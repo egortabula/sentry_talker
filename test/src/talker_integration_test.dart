@@ -32,6 +32,31 @@ void main() {
     expect(package.version, sdkVersion);
   });
 
+  test(
+    'should ignore route and http records',
+    () async {
+      final sut = fixture.createSut()..call(fixture.hub, fixture.options);
+      sut.talker.logCustom(
+        TalkerLog('root message', key: TalkerLogType.route.key),
+      );
+
+      sut.talker.logCustom(
+        TalkerLog('http error message', key: TalkerLogType.httpError.key),
+      );
+      sut.talker.logCustom(
+        TalkerLog('http request message', key: TalkerLogType.httpRequest.key),
+      );
+      sut.talker.logCustom(
+        TalkerLog('http response message', key: TalkerLogType.httpResponse.key),
+      );
+
+      await Future<void>.delayed(Duration.zero);
+
+      expect(fixture.hub.breadcrumbs.length, 0);
+      expect(fixture.hub.events.length, 0);
+    },
+  );
+
   test('logger gets recorded if level over minlevel', () async {
     final sut = fixture.createSut(minBreadcrumbLevel: LogLevel.debug)
       ..call(fixture.hub, fixture.options);
