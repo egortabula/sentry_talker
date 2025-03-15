@@ -1,11 +1,21 @@
 name: sentry_talker
 description: An integration which adds support for recording log from the talker package.
 version: 1.0.0+1
+repository: https://github.com/egortabula/sentry_talker
+issue_tracker: https://github.com/egortabula/sentry_talker/issues
 
 
 environment:
   sdk: ^3.5.0
   flutter: ^3.24.0
+
+platforms:
+  android:
+  ios:
+  macos:
+  linux:
+  windows:
+  web:
 
 dependencies:
   flutter:
