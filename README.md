@@ -1,54 +1,51 @@
-# Sentry Talker
+<!-- # Sentry Talker
 
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![Powered by Mason](https://img.shields.io/endpoint?url=https%3A%2F%2Ftinyurl.com%2Fmason-badge)](https://github.com/felangel/mason)
-[![License: MIT][license_badge]][license_link]
+[![License: MIT][license_badge]][license_link] -->
 
 
-My new Flutter package
+<p align="center">
+  <a href="https://sentry.io" target="_blank" align="center">
+    <img src="https://sentry-brand.storage.googleapis.com/sentry-logo-black.png" width="280">
+  </a>
+  <br />
+</p>
 
-## Installation 💻
+Sentry integration for `talker` package
+===========
 
-**❗ In order to start using Sentry Talker you must have the [Flutter SDK][flutter_install_link] installed on your machine.**
+| package | license | pub | likes | popularity | pub points |
+| ------- | ------- | ------- | ------- | ------- | ------- |
+| sentry_talker | [![License: MIT][license_badge]][license_link] | [![pub package](https://img.shields.io/pub/v/sentry_talker.svg)](https://pub.dev/packages/sentry_talker) | [![likes](https://img.shields.io/pub/likes/sentry_talker)](https://pub.dev/packages/sentry_talker/score) | [![popularity](https://img.shields.io/pub/popularity/sentry_talker)](https://pub.dev/packages/sentry_talker/score) | [![pub points](https://img.shields.io/pub/points/sentry_talker)](https://pub.dev/packages/sentry_talker/score)
 
-Install via `flutter pub add`:
+Integration for the [`talker`](https://pub.dev/packages/talker) package.
 
-```sh
-dart pub add sentry_talker
-```
+#### Usage
 
----
+- Sign up for a Sentry.io account and get a DSN at https://sentry.io.
 
-## Continuous Integration 🤖
+- Follow the installing instructions on [pub.dev](https://pub.dev/packages/sentry/install).
 
-Sentry Talker comes with a built-in [GitHub Actions workflow][github_actions_link] powered by [Very Good Workflows][very_good_workflows_link] but you can also add your preferred CI/CD solution.
+- Initialize the Sentry SDK using the DSN issued by Sentry.io and add the `TalkerIntegration`
 
-Out of the box, on each pull request and push, the CI `formats`, `lints`, and `tests` the code. This ensures the code remains consistent and behaves correctly as you add functionality or make changes. The project uses [Very Good Analysis][very_good_analysis_link] for a strict set of analysis options used by our team. Code coverage is enforced using the [Very Good Workflows][very_good_coverage_link].
+```dart
+import 'package:sentry/sentry.dart';
+import 'package:sentry_talker/sentry_talker.dart';
 
----
+Future<void> main() async {
+  await Sentry.init(
+    (options) {
+      options.dsn = 'https://example@sentry.io/example';
+      options.addIntegration(TalkerIntegration());
+    },
+    appRunner: initApp, // Init your App.
+  );
+}
 
-## Running Tests 🧪
-
-For first time users, install the [very_good_cli][very_good_cli_link]:
-
-```sh
-dart pub global activate very_good_cli
-```
-
-To run all unit tests:
-
-```sh
-very_good test --coverage
-```
-
-To view the generated coverage report you can use [lcov](https://github.com/linux-test-project/lcov).
-
-```sh
-# Generate Coverage Report
-genhtml coverage/lcov.info -o coverage/
-
-# Open Coverage Report
-open coverage/index.html
+void initApp() {
+  // your app code
+}
 ```
 
 [flutter_install_link]: https://docs.flutter.dev/get-started/install
