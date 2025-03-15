@@ -7,7 +7,7 @@ issue_tracker: https://github.com/egortabula/sentry_talker/issues
 
 environment:
   sdk: ^3.5.0
-  flutter: ^3.24.0
+  flutter: '>=3.24.0'
 
 platforms:
   android:
