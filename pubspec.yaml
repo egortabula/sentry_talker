@@ -20,7 +20,7 @@ platforms:
 dependencies:
   flutter:
     sdk: flutter
-  sentry: ^8.14.0
+  sentry: ">=8.14.0 <10.0.0"
   talker: ^4.7.0
 
 dev_dependencies:
